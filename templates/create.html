@@ -26,20 +26,9 @@ margin: auto;
 {% endblock %}
 
 {% block body %}
-<<<<<<< HEAD
-
-<form id="myForm">
-    <div class="row">
-        <input type="text" placeholder="Input 1">
-        <input type="text" placeholder="Input 2">
-        <input type="text" placeholder="Input 3">
-        <input type="text" placeholder="Input  
- 4">
-=======
  creaaaateeeeeeeeeeeeee
     <div id='header'> 
         <h1>The Nest invoicing platform</h1>
->>>>>>> 9b28cf41cdb466055a3b14959a70ad1645278378
     </div>
     <button type="button" id="addRow">Add Row</button>
     <button type="submit">Submit</button>
@@ -47,13 +36,7 @@ margin: auto;
 
 {% endblock %}
 
-
-    <br>
-        <div class='buttons center'>
-            <a href="templates/create.html">  Create invoice</a>
-        </div>
-    </div>
-
+<script>
 addRowButton.addEventListener('click', () => {
     const newRow = document.createElement('div');
     newRow.classList.add('row');
@@ -87,4 +70,4 @@ form.addEventListener('submit', (event) => {
 
     console.log(formData); // Do something with the collected data
 });
-</style>
+</script>
