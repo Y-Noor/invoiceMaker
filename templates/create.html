@@ -26,16 +26,27 @@ margin: auto;
 {% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
+
+<form id="myForm">
+    <div class="row">
+        <input type="text" placeholder="Input 1">
+        <input type="text" placeholder="Input 2">
+        <input type="text" placeholder="Input 3">
+        <input type="text" placeholder="Input  
+ 4">
+=======
  creaaaateeeeeeeeeeeeee
     <div id='header'> 
         <h1>The Nest invoicing platform</h1>
+>>>>>>> 9b28cf41cdb466055a3b14959a70ad1645278378
     </div>
+    <button type="button" id="addRow">Add Row</button>
+    <button type="submit">Submit</button>
+</form>
 
+{% endblock %}
 
-    <div class="main">
-        <div class='buttons center'>
-            View invoice
-        </div>
 
     <br>
         <div class='buttons center'>
@@ -43,4 +54,37 @@ margin: auto;
         </div>
     </div>
 
-{% endblock %}
+addRowButton.addEventListener('click', () => {
+    const newRow = document.createElement('div');
+    newRow.classList.add('row');
+
+    newRow.innerHTML = `
+        <input type="text" placeholder="Input 1">
+        <input type="text" placeholder="Input 2">
+        <input type="text" placeholder="Input 3">
+        <input type="text" placeholder="Input 4">
+    `;
+
+    form.insertBefore(newRow, addRowButton);
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const rows = document.querySelectorAll('.row');
+    const formData = [];
+
+    rows.forEach(row => {
+        const inputs = row.querySelectorAll('input');
+        const rowData = [];
+
+        inputs.forEach(input => {
+            rowData.push(input.value);
+        });
+
+        formData.push(rowData);
+    });
+
+    console.log(formData); // Do something with the collected data
+});
+</style>
