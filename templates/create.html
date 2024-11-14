@@ -27,53 +27,44 @@ margin: auto;
 
 {% block body %}
  
- <form id="myForm">
-    <div class="row">
-        <input type="text" placeholder="Input 1">
-        <input type="text" placeholder="Input 2">
-        <input type="text" placeholder="Input 3">
-        <input type="text" placeholder="Input 4">
-    </div>
-    <button type="button" id="addRow">Add Row</button>
-    <button type="submit">Submit</button>
-</form>
+<div class="container">
+    <form id="dynamic-form">
+      <!-- First row of inputs -->
+      <div class="input-row">
+        <input type="text" name="field1[]" placeholder="Field 1">
+        <input type="text" name="field2[]" placeholder="Field 2">
+        <input type="text" name="field3[]" placeholder="Field 3">
+        <input type="text" name="field4[]" placeholder="Field 4">
+      </div>
+    </form>
+    <button id="add-row">Add Row</button>
+  </div>
+
 {% endblock %}
 
 <script>
-const addRowButton = document.getElementById('addRow');
-const form = document.getElementById('myForm');
+const addRowButton = document.getElementById("add-row");
+const form = document.getElementById("dynamic-form");
 
-addRowButton.addEventListener('click', function() {
-    const newRow = document.createElement('div');
-    newRow.classList.add('row');
+// Function to create a new row of input fields
+function addNewRow() {
+  const newRow = document.createElement("div");
+  newRow.classList.add("input-row");
 
-    newRow.innerHTML = `
-        <input type="text" placeholder="Input 1">
-        <input type="text" placeholder="Input 2">
-        <input type="text" placeholder="Input 3">
-        <input type="text" placeholder="Input 4">
-    `;
+  // Create 4 new input fields for the new row
+  for (let i = 1; i <= 4; i++) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = `field${i}[]`; // Use an array for each field to handle multiple rows
+    input.placeholder = `Field ${i}`;
+    newRow.appendChild(input);
+  }
 
-    form.insertBefore(newRow, addRowButton);
-});
+  // Append the new row to the form
+  form.appendChild(newRow);
+}
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+// Add event listener for the "Add Row" button
+addRowButton.addEventListener("click", addNewRow);
 
-    const rows = document.querySelectorAll('.row');
-    const formData = [];
-
-    rows.forEach(function(row) {
-        const inputs = row.querySelectorAll('input');
-        const rowData = [];
-
-        inputs.forEach(function(input) {
-            rowData.push(input.value);
-        });
-
-        formData.push(rowData);
-    });
-
-    console.log(formData); // Do something with the collected data
-});
 </script>
